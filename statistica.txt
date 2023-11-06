@@ -1,0 +1,10 @@
+nume fisier: poza.bmp
+inaltime: 1920
+lungime: 1280
+dimensiune: <dimensiune in octeti>
+identificatorul utilizatorului: <user id>
+timpul ultimei modificari: 28.10.2023
+contorul de legaturi: <numar legaturi>
+drepturi de acces user: RWX
+drepturi de acces grup: R–-
+drepturi de acces altii: ---
