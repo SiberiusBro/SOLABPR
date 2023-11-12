@@ -13,7 +13,7 @@ void print_error(char *message) {
 }
  
 void print_usage() {
-    fprintf(stderr, "Usage: ./program <fisier_intrare>\n");
+    fprintf(stderr, "Usage: ./program poza.bmp\n");
     exit(EXIT_FAILURE);
 }
  
