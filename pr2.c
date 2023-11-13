@@ -125,5 +125,21 @@ int main(int argc, char *argv[]) {
  
             // Write statistics to statistica.txt
             write_statistics(entry_path, is_directory);
+ if (is_symbolic_link) {
+                char target_path[256];
+                ssize_t target_size = readlink(entry_path, target_path, sizeof(target_path) - 1);
+                if (target_size != -1) {
+                    target_path[target_size] = '\0';
+                    write_statistics(target_path, 0);  // Treat the target of the symbolic link as a regular file
+                }
+            }
+        }
+    }
  
+    // Close the directory
+    closedir(dir);
+ 
+    return 0;
+}
+
             
