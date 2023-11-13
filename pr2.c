@@ -112,7 +112,7 @@ int main(int argc, char *argv[]) {
     // Loop through directory entries
     struct dirent *entry;
     while ((entry = readdir(dir)) != NULL) {
-        if (strcmp(entry->d_name, ".") != 0 && strcmp(entry->d_name, "..") != 0) {
+    if (strcmp(entry->d_name, ".") != 0 && strcmp(entry->d_name, "..") != 0) {
             char entry_path[257];
             snprintf(entry_path, sizeof(entry_path), "%s/%s", directory_path, entry->d_name);
  
@@ -122,9 +122,10 @@ int main(int argc, char *argv[]) {
  
             int is_directory = S_ISDIR(entry_info.st_mode);
             int is_symbolic_link = S_ISLNK(entry_info.st_mode);
- 
-            // Write statistics to statistica.txt
-            write_statistics(entry_path, is_directory);
+    if(!is_directory && !is_symbolic_link && strstr(entry->d_name, ".bmp") != NULL {
+             // Write statistics to statistica.txt
+             write_statistics(entry_path, is_directory);
+         }
  if (is_symbolic_link) {
                 char target_path[256];
                 ssize_t target_size = readlink(entry_path, target_path, sizeof(target_path) - 1);
