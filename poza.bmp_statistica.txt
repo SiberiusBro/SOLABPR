@@ -1,0 +1,10 @@
+nume fisier: FolderNouIesire/poza.bmp_statistica.txt
+inaltime: 1280
+lungime: 1920
+dimensiune: 7372938
+identificatorul utilizatorului: 1000
+timpul ultimei modificari: Sun Nov 12 02:44:15 2023
+contorul de legaturi: 1
+drepturi de acces user: 100664
+drepturi de acces grup: 006
+drepturi de acces altii: 006
