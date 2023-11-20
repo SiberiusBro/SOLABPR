@@ -14,7 +14,7 @@ void print_error(char *message) {
     exit(EXIT_FAILURE);
 }
 
-void write_statistics(const char *filename, int is_directory, int is_bmp, off_t size, uid_t user_id, mode_t permissions, time_t modification_time, int link_count, int width, int height) {
+void scrie_statistici(const char *filename, int is_directory, int is_bmp, off_t size, uid_t user_id, mode_t permissions, time_t modification_time, int link_count, int width, int height) {
     int fd;
     char *statistics = (char *)malloc(1024);
 
@@ -45,7 +45,7 @@ void write_statistics(const char *filename, int is_directory, int is_bmp, off_t 
     close(fd);
 }
 
-void convert_to_grayscale(const char *input_path, const char *output_path, int desired_width, int desired_height) {
+void convert_gri(const char *input_path, const char *output_path, int desired_width, int desired_height) {
     int input_fd = open(input_path, O_RDONLY);
     if (input_fd == -1) {
         print_error("Eroare la deschiderea fisierului BMP");
@@ -89,7 +89,7 @@ void convert_to_grayscale(const char *input_path, const char *output_path, int d
 }
 
 
-void process_entry(const char *input_dir, const char *output_dir, const char *entry_name) {
+void proces_intrare(const char *input_dir, const char *output_dir, const char *entry_name) {
     char input_path[1024];
     char output_path[1024];
 
@@ -139,12 +139,12 @@ void process_entry(const char *input_dir, const char *output_dir, const char *en
 
     if (child_pid == 0) {
         // Proces fiu
-        write_statistics(output_path, S_ISDIR(entry_info.st_mode), is_bmp, entry_info.st_size, user_id, permissions, modification_time, link_count, width, height);
+        scrie_statistici(output_path, S_ISDIR(entry_info.st_mode), is_bmp, entry_info.st_size, user_id, permissions, modification_time, link_count, width, height);
 
         if (is_bmp) {
             char grayscale_output_path[1024];
             sprintf(grayscale_output_path, "%s/%s_grayscale.bmp", output_dir, entry_name);
-            convert_to_grayscale(input_path, grayscale_output_path, width, height);
+            convert_gri(input_path, grayscale_output_path, width, height);
         }
 
         exit(EXIT_SUCCESS);
@@ -168,7 +168,7 @@ int main(int argc, char *argv[]) {
     struct dirent *entry;
     while ((entry = readdir(dir)) != NULL) {
         if (strcmp(entry->d_name, ".") != 0 && strcmp(entry->d_name, "..") != 0) {
-            process_entry(input_dir, output_dir, entry->d_name);
+            proces_intrare(input_dir, output_dir, entry->d_name);
         }
     }
 
